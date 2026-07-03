@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-night: #150f26;
+  --color-night-soft: #201a3a;
+  --color-night-2: #2b2350;
+  --color-magenta: #e94ba0;
+  --color-magenta-dark: #c22f80;
+  --color-gold: #f4c95d;
+  --color-teal: #3aafa9;
+  --color-mist: #746c8c;
+  --color-mist-light: #a49dc0;
+  --color-paper: #faf7ff;
+  --color-line: #e7e1f5;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-paper);
+  color: var(--color-night);
+}
+
+.dark body {
+  background-color: var(--color-night);
+  color: var(--color-paper);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-night);
+}
+
+.input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background: transparent;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.input:focus {
+  border-color: var(--color-magenta);
+}
+.dark .input {
+  border-color: var(--color-night-2);
+}
+
+/* ticket-stub signature: perforated dashed divider with notch cutouts */
+.ticket-notch {
+  position: relative;
+}
+.ticket-notch::before,
+.ticket-notch::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--color-paper);
+  border-radius: 999px;
+  transform: translateY(-50%);
+}
+.dark .ticket-notch::before,
+.dark .ticket-notch::after {
+  background: var(--color-night);
+}
+.ticket-notch::before { left: -10px; }
+.ticket-notch::after { right: -10px; }
+.ticket-divider {
+  border-top: 2px dashed var(--color-line);
+}
+.dark .ticket-divider {
+  border-top: 2px dashed var(--color-night-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
